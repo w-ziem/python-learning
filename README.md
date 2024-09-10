@@ -1,0 +1,1 @@
+This repository is my place to put notes from my journey of learning python, so I can look back and also get used to using Git.
