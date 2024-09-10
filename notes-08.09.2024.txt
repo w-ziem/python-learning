@@ -1,0 +1,90 @@
+COLLECTIONS, ITERTOOLS, LAMBDA, EXCEPTIONS, LOGGING
+
+
+
+COLLECTIONS MODULE
+
+1. Counter() - retrurn a dict from iterable
+methods: most_common, elements, *normal dict methods*
+2. namedtuple() - easy way to create tuples e.g. coordinates for points, like a class 
+3. OrderedDict() - outdated, normal dict acts like this, remember order in which inserted
+4. defaultdict(default value) - wont raise key error, rather return default value
+5. deque() - a list with appendleft and popleft for easier acces
+methods: clear, rotate(int-move this much to right+, left-), extend, extendleft([4,5,6]) => [6,5,4,...]
+
+
+ITERTOOLS MODULE
+
+1. product(a,b,c,...) - makes pairs/triplets/... with all possible combinations
+arguments: repeat=1,2,3,...
+2. permutations(iterable, length:int) - creates a list of all permutations of given (kolejnosc ma znaczenie)
+3. combinations(iterable, lenght:int) - creates a list of all possible combinations (kolejnosc nie ma znaczenia)
+-combinations_with_replacement(iterable, lenght:int) - the combiantions can have 2 of the same elements e.g (1,1) form [1,2,3]
+4. accumulate(iterable, func=function(operator module, max, baisc is sum)) - creates a new list, in which every next element is a sum (specified function) of itself and previous element
+5. gruopby(iterable, key=*function*) - splits/groups an iterable into list True/False (from the function return)
+przed grupowaniem trzeba posortować listę po tym samym kluczu e.g. osoby o tym samym wieku powinny być obok siebie
+6. infinite irerators:
+- count(start:int, step:int) - counts for infinity
+- cycle(iterable) - iterates infinitely trough items in iterable
+- repeat(something, count:int) - repeats something given in an argument forever or specified amout of times
+
+
+
+LAMBDA FUNCTION 
+good usage in other functions that takes function as arguments
+-sorted
+-reduce(func, seq) - gives product of an iterable afrer applying function
+-map
+-filter
+
+
+
+ERRORS & EXCEPTIONS
+FileNoFundError
+NameError
+ValueError
+IndexError
+KeyError
+
+you can raise errors with:
+raise *errortype or Exception*('message')
+or you can chceck if condition is true:
+assert(condition), 'message' => AssertionError
+
+try, except, else blocks
+You can check what Exception you caught by:
+except Exception as e:
+    print(e)
+You can end with finally
+
+Making your own exceptions and gathering info about them:
+-to create your own exception, you create a class, which inherits from Exception class
+*class ValueTooSmallError(Exception):
+    def __init__(self, message, value):
+        ...*
+
+you can make custom methods for this exception to gather and use as mucch info as yuu need
+
+
+LOGGING MODULE
+dla małych aplikacji można skorzystać z logging.basicConfig: tutaj należy ustawić - level, filename, format...
+
+dla rozrastających się aplikacji bardziej dynamicznym podejściem będzie stworzenie loggera, który będzie obsługiwał wsyzstkie moduły
+dobrą praktyką jest nazywanie loggera __main__ = nazwa modułu, z którego pochodzi.
+
+***
+
+logger = logging.getLogger(__main__)
+logger.setLevel(logging.POZIOM)
+file_handler =  logging.FileHandler('app.log') - teraz wszystko  będzie  wysyłane do app.log, a nie do konsoli(root)
+logger.addHandler(file_handler)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s) - ustawienie formatu
+logger.setFormatter(formatter)
+
+def log_message(x):
+    logger.info(x)
+
+***
+tak przygotowany logger pozwoli na zarządzania logami całego projektu w różnych modułach i łatwo go obsługiwać, jest to dynamiczne i elastyczne zaimplemetowanie.
+
+You can use different handlers for console/file(s), for example only send errors to some

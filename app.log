@@ -1,0 +1,7 @@
+2024-09-08 18:32:10,151 - DEBUG - DEBUG message
+2024-09-08 18:32:10,151 - INFO - INFO message
+2024-09-08 18:32:10,151 - WARNING - WARNING message
+2024-09-08 18:32:10,151 - ERROR - ERROR message
+2024-09-08 18:32:10,151 - CRITICAL - CRITICAL message
+2024-09-08 18:35:18,883 - INFO - this is an info message from helper
+2024-09-08 18:38:43,424 - logginghelper - INFO - this is an info message from helper
